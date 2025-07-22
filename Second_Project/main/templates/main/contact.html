@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}تواصل معنا{% endblock %}
+
+{% block content %}
+  <h2>تواصل معنا</h2>
+  <form method="post" class="mb-4">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="mb-3">
+      <label for="{{ form.name.id_for_label }}">الاسم</label>
+      {{ form.name }}
+    </div>
+
+    <div class="mb-3">
+      <label for="{{ form.email.id_for_label }}">البريد الإلكتروني</label>
+      {{ form.email }}
+    </div>
+
+    <div class="mb-3">
+      <label for="{{ form.message.id_for_label }}">الرسالة</label>
+      {{ form.message }}
+    </div>
+
+    <button type="submit" class="btn btn-dark">إرسال</button>
+  </form>
+{% endblock %}

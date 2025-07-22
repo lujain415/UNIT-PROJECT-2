@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Search Results for "{{ request.GET.search }}"</h2>
+
+<form method="get" action="{% url 'pets:pet_search' %}" class="d-flex mb-4" role="search">
+  <input
+    class="form-control me-2"
+    type="search"
+    name="search"
+    placeholder="Search pets..."
+    value="{{ request.GET.search }}"
+  />
+  <button type="submit" class="btn btn-dark-custom">Search</button>
+</form>
+
+{% if results %}
+  <ul>
+    {% for pet in results %}
+      <li><a href="{% url 'pets:pet_detail' pet.id %}">{{ pet.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No results found.</p>
+{% endif %}
+{% endblock %}

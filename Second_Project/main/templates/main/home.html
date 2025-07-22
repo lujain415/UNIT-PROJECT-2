@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}الرئيسية{% endblock %}
+
+{% block content %}
+  <div class="text-center mb-4">
+    <h1>مرحبًا بك في PetCare</h1>
+    <p>ساعد حيوانًا في إيجاد منزل دافئ 💜</p>
+  </div>
+
+  <div class="row">
+    {% for pet in pets %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          {% if pet.image %}
+            <img src="{{ pet.image.url }}" class="card-img-top" alt="{{ pet.name }}">
+          {% else %}
+            <img src="{% static 'images/default_pet.jpg' %}" class="card-img-top" alt="default pet">
+          {% endif %}
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ pet.name }}</h5>
+            <p class="card-text">{{ pet.description|truncatewords:10 }}</p>
+            <a href="{% url 'pets:pet_detail' pet.id %}" class="btn btn-dark mt-auto">اعرف المزيد</a>
+
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">لا توجد حيوانات حاليًا.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

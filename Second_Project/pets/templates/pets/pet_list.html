@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Available Pets for Adoption</h2>
+
+<form method="get" class="filter-form mb-4">
+  <label for="category">Category:</label>
+  <select name="category" id="category" onchange="this.form.submit()">
+    <option value="all" {% if selected_category == 'all' %}selected{% endif %}>All</option>
+    <option value="dog" {% if selected_category == 'dog' %}selected{% endif %}>Dog</option>
+    <option value="cat" {% if selected_category == 'cat' %}selected{% endif %}>Cat</option>
+    <option value="bird" {% if selected_category == 'bird' %}selected{% endif %}>Bird</option>
+    <option value="other" {% if selected_category == 'other' %}selected{% endif %}>Other</option>
+  </select>
+
+  <label for="available" class="ms-3">Available:</label>
+  <select name="available" id="available" onchange="this.form.submit()">
+    <option value="all" {% if selected_available == 'all' %}selected{% endif %}>All</option>
+    <option value="true" {% if selected_available == 'true' %}selected{% endif %}>Yes</option>
+    <option value="false" {% if selected_available == 'false' %}selected{% endif %}>No</option>
+  </select>
+</form>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for pet in pets %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        {% if pet.image %}
+          <img src="{{ pet.image.url }}" class="card-img-top" alt="{{ pet.name }}" style="height: 200px; object-fit: cover;">
+        {% else %}
+          <img src="{% static 'images/default_pet.jpg' %}" class="card-img-top" alt="{{ pet.name }}">
+        {% endif %}
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ pet.name }}</h5>
+          <p class="card-text">{{ pet.description|truncatewords:15 }}</p>
+          <p><strong>Breed:</strong> {{ pet.breed }}</p>
+          <p><strong>Age:</strong> {{ pet.age }} years</p>
+          <a href="{% url 'pets:pet_detail' pet.id %}" class="btn btn-dark-custom mt-auto">More Details</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted">No pets available right now.</p>
+  {% endfor %}
+</div>
+{% endblock %}

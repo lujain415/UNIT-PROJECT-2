@@ -1,7 +1,6 @@
 from django import forms
-from .models import Entry
 
-class EntryForm(forms.ModelForm):
-    class Meta:
-        model = Entry
-        fields = ['title', 'description', 'category', 'image']
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)

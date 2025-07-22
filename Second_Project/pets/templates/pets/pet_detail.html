@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>{{ pet.name }}</h2>
+
+<div class="detail-top">
+  <div class="detail-img">
+    {% if pet.image %}
+      <img src="{{ pet.image.url }}" alt="{{ pet.name }}">
+    {% else %}
+      <img src="{% static 'images/default_pet.jpg' %}" alt="{{ pet.name }}">
+    {% endif %}
+  </div>
+  <div class="detail-info">
+    <p><strong>Breed:</strong> {{ pet.breed }}</p>
+    <p><strong>Age:</strong> {{ pet.age }} years</p>
+    <p><strong>Category:</strong> {{ pet.get_category_display }}</p>
+    <p><strong>Description:</strong> {{ pet.description }}</p>
+    <p><strong>Available:</strong> {{ pet.available|yesno:"Yes,No" }}</p>
+  </div>
+</div>
+
+<hr>
+
+<h4>Comments ({{ comments.count }})</h4>
+<div>
+  {% for comment in comments %}
+    <div class="card mb-2">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-1 text-muted">{{ comment.name }} - {{ comment.created_at|date:"Y-m-d H:i" }}</h6>
+        <p class="card-text">{{ comment.text }}</p>
+      </div>
+    </div>
+  {% empty %}
+    <p>No comments yet. Be the first to comment!</p>
+  {% endfor %}
+</div>
+
+<hr>
+
+<h4>Add a Comment</h4>
+<form method="post" class="plant-form">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Add Comment</button>
+</form>
+{% endblock %}

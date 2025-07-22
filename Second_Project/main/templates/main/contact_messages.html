@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}رسائل التواصل{% endblock %}
+
+{% block content %}
+  <h2>رسائل التواصل</h2>
+
+  {% if messages %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for msg in messages %}
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{ msg.name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{ msg.email }}</h6>
+              <p class="card-text">{{ msg.message|linebreaksbr }}</p>
+            </div>
+            <div class="card-footer text-muted">
+              أرسلت في: {{ msg.created_at|date:"Y-m-d H:i" }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center">لا توجد رسائل حالياً.</p>
+  {% endif %}
+{% endblock %}

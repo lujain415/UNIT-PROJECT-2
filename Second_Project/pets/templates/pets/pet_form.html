@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% if update %}Update{% else %}Add{% endif %} Pet</h2>
+
+<form method="post" enctype="multipart/form-data" class="plant-form">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-dark-custom">{% if update %}Update{% else %}Add{% endif %} Pet</button>
+</form>
+{% endblock %}
