@@ -1,11 +1,50 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>{% if update %}Update{% else %}Add{% endif %} Pet</h2>
+<h2 class="mb-4">
+  {% if update %}تعديل بيانات الحيوان{% else %}إضافة حيوان جديد للتبني{% endif %}
+</h2>
 
-<form method="post" enctype="multipart/form-data" class="plant-form">
+<form method="POST" enctype="multipart/form-data" class="p-4 border rounded bg-light">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-dark-custom">{% if update %}Update{% else %}Add{% endif %} Pet</button>
+  {{ form.non_field_errors }}
+
+  <div class="mb-3">
+    <label for="id_name" class="form-label">الاسم</label>
+    {{ form.name }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_age" class="form-label">العمر</label>
+    {{ form.age }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_breed" class="form-label">السلالة</label>
+    {{ form.breed }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_category" class="form-label">الفئة</label>
+    {{ form.category }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_description" class="form-label">الوصف</label>
+    {{ form.description }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_image" class="form-label">الصورة</label>
+    {{ form.image }}
+  </div>
+
+  <div class="form-check mb-3">
+    {{ form.available }} <label for="id_available" class="form-check-label">متاح للتبني؟</label>
+  </div>
+
+  <button type="submit" class="btn btn-dark-custom">
+    {% if update %}تحديث{% else %}إضافة{% endif %}
+  </button>
 </form>
 {% endblock %}

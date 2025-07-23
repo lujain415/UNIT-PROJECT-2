@@ -5,9 +5,14 @@
 
 {% block content %}
   <div class="text-center mb-4">
-    <h1>مرحبًا بك في PetCare</h1>
-    <p>ساعد حيوانًا في إيجاد منزل دافئ 💜</p>
+    <h1>PetCare</h1>
+    <p>Help a animal find a warm home</p>
   </div>
+  <form method="get" action="{% url 'pets:pet_search' %}" class="mb-4 d-flex justify-content-center align-items-center gap-2">
+  <input type="text" name="search" placeholder="Search.." class="form-control" style="max-width:400px;">
+  <button type="submit" class="btn btn-dark-custom">Search</button>
+</form>
+
 
   <div class="row">
     {% for pet in pets %}
@@ -27,7 +32,7 @@
         </div>
       </div>
     {% empty %}
-      <p class="text-muted">لا توجد حيوانات حاليًا.</p>
+      <p class="text-muted">There are no animals at the moment.</p>
     {% endfor %}
   </div>
 {% endblock %}

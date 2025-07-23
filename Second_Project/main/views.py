@@ -4,7 +4,7 @@ from .forms import ContactForm
 from .models import Contact
 
 def home(request):
-    # عرض أحدث 6 حيوانات متاحة (مثل featured plants)
+    
     featured_pets = Pet.objects.filter(available=True).order_by('-created_at')[:6]
     return render(request, 'main/home.html', {'pets': featured_pets})
 
@@ -27,10 +27,10 @@ def contact_success_view(request):
 
 
 def pet_list(request):
-    # فلترة الحيوانات المتاحة فقط
+    
     pets = Pet.objects.filter(available=True).order_by('-created_at')
 
-    # مثال فلترة ممكن تضيفها لاحقًا (category, age, ...)
+    
     category = request.GET.get('category')
     if category and category != 'all':
         pets = pets.filter(category=category)
@@ -38,7 +38,7 @@ def pet_list(request):
     context = {
         'pets': pets,
         'selected_category': category or 'all',
-        'categories': Pet._meta.get_field('category').choices,  # جلب اختيارات الفئة من الموديل
+        'categories': Pet._meta.get_field('category').choices, 
     }
     return render(request, 'main/pet_list.html', context)
 

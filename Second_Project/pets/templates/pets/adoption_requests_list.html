@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">طلبات التبني</h2>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for req in requests %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        {% if req.pet.image %}
+        <img src="{{ req.pet.image.url }}" class="card-img-top" alt="{{ req.pet.name }}">
+        {% else %}
+        <img src="https://via.placeholder.com/300x200?text=No+Image" class="card-img-top" alt="No Image">
+        {% endif %}
+
+        <div class="card-body">
+          <h5 class="card-title">{{ req.pet.name }}</h5>
+          <p class="card-text"><strong>اسم الطالب:</strong> {{ req.name }}</p>
+          <p class="card-text"><strong>البريد الإلكتروني:</strong> {{ req.email }}</p>
+          <p class="card-text"><strong>تاريخ الطلب:</strong> {{ req.created_at|date:"Y-m-d H:i" }}</p>
+
+          <!-- زر الحذف -->
+          <form method="post" action="{% url 'pets:delete_adoption_request' req.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm mt-2">🗑️ حذف الطلب</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center">لا توجد طلبات تبني حتى الآن.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

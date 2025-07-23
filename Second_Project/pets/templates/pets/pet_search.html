@@ -15,12 +15,24 @@
 </form>
 
 {% if results %}
-  <ul>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for pet in results %}
-      <li><a href="{% url 'pets:pet_detail' pet.id %}">{{ pet.name }}</a></li>
+      <div class="col">
+        <div class="card h-100">
+          {% if pet.image %}
+            <img src="{{ pet.image.url }}" class="card-img-top" alt="{{ pet.name }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ pet.name }}</h5>
+            <p class="card-text">{{ pet.description|truncatewords:15 }}</p>
+            <a href="{% url 'pets:pet_detail' pet.id %}" class="btn btn-outline-primary">عرض التفاصيل</a>
+          </div>
+        </div>
+      </div>
     {% endfor %}
-  </ul>
+  </div>
 {% else %}
-  <p>No results found.</p>
+  <p>لم يتم العثور على نتائج.</p>
 {% endif %}
+
 {% endblock %}

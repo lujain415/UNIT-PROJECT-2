@@ -1,11 +1,6 @@
 from django.contrib import admin
-
-# Register your models here.
-
 from .models import Pet, Comment
 # Register your models here.
-
-
 
 @admin.register(Pet)
 class PetAdmin(admin.ModelAdmin):

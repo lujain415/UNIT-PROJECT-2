@@ -29,3 +29,14 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.pet.name}"
+
+class AdoptionRequest(models.Model):
+    pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name='adoption_requests')
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    message = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Adoption request for {self.pet.name} by {self.name}"

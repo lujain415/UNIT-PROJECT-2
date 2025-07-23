@@ -9,5 +9,11 @@ urlpatterns = [
     path('<int:pet_id>/update/', views.pet_update, name='pet_update'),
     path('<int:pet_id>/delete/', views.pet_delete, name='pet_delete'),
     path('search/', views.pet_search, name='pet_search'),
+    path('<int:pet_id>/adopt/', views.adoption_request_view, name='adoption_request'),
+    path('adoption-requests/', views.adoption_requests_list, name='adoption_requests_list'),
+     path('thank-you/', views.thank_you_view, name='thank_you'),
+     path('requests/<int:request_id>/delete/', views.delete_adoption_request, name='delete_adoption_request'),
+
+
     
 ]
