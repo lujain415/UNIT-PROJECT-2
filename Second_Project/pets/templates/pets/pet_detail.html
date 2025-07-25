@@ -21,11 +21,12 @@
   </div>
 </div>
 <div class="mt-4 d-flex gap-2">
-  <a href="{% url 'pets:adoption_request' pet.id %}" class="btn btn-success my-3">تبني هذا الحيوان</a>
-
-  <a href="{% url 'pets:pet_update' pet.id %}" class="btn btn-warning">تعديل</a>
-  <a href="{% url 'pets:pet_delete' pet.id %}" class="btn btn-danger">حذف</a>
+  <a href="{% url 'pets:adoption_request' pet.id %}" class="btn custom-btn adopt-btn">تبني هذا الحيوان</a>
+  <a href="{% url 'pets:pet_update' pet.id %}" class="btn custom-btn edit-btn">تعديل</a>
+  <a href="{% url 'pets:pet_delete' pet.id %}" class="btn custom-btn delete-btn">حذف</a>
 </div>
+
+
 
 <hr>
 
@@ -50,6 +51,6 @@
       {% csrf_token %}
       <input type="text" name="name" class="form-control" placeholder="Your name" required />
       <textarea name="text" class="form-control" rows="3" placeholder="Your comment..." required></textarea>
-      <button type="submit" class="btn btn-primary">Add Comment</button>
+      <button type="submit" class="btn custom-btn comment-btn">Add Comment</button>
     </form>
 {% endblock %}

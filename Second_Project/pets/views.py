@@ -109,3 +109,9 @@ def delete_adoption_request(request, request_id):
     adoption_request = get_object_or_404(AdoptionRequest, id=request_id)
     adoption_request.delete()
     return redirect('pets:adoption_requests_list')
+
+def accept_adoption_request(request, request_id):
+    adoption_request = get_object_or_404(AdoptionRequest, id=request_id)
+    adoption_request.status = 'accepted'
+    adoption_request.save()
+    return redirect('pets:adoption_requests_list')

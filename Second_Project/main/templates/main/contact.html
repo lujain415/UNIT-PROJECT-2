@@ -1,30 +1,37 @@
 {% extends 'base.html' %}
 
-{% block title %}تواصل معنا{% endblock %}
+{% block title %}Contact Us{% endblock %}
 
 {% block content %}
-  <h2>تواصل معنا</h2>
-  <form method="post" class="mb-4">
+<div class="container mt-5">
+  <h2 class="fade-in-title special-gothic-expanded-one-regular text-center mb-4 mt-4 custom-section-title">
+    Contact Us
+  </h2>
+
+  <form method="post" class="p-4 border rounded bg-light shadow-sm mx-auto" style="max-width: 600px;">
     {% csrf_token %}
     {{ form.non_field_errors }}
 
     <div class="mb-3">
-      <label for="{{ form.name.id_for_label }}">الاسم</label>
+      <label for="{{ form.name.id_for_label }}" class="form-label fw-bold">Name</label>
       {{ form.name }}
     </div>
 
     <div class="mb-3">
-      <label for="{{ form.email.id_for_label }}">البريد الإلكتروني</label>
+      <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">Email</label>
       {{ form.email }}
     </div>
 
     <div class="mb-3">
-      <label for="{{ form.message.id_for_label }}">الرسالة</label>
+      <label for="{{ form.message.id_for_label }}" class="form-label fw-bold">Message</label>
       {{ form.message }}
     </div>
 
-    <button type="submit" class="btn btn-dark">إرسال</button>
+    <button type="submit" class="btn btn-dark-custom w-100">Send</button>
   </form>
-  <a href="{% url 'main:contact_messages' %}" class="btn btn-outline-secondary mt-2">عرض جميع الرسائل</a>
 
+  <a href="{% url 'main:contact_messages' %}" class="btn btn-outline-secondary mt-3 d-block mx-auto" style="max-width: 600px; text-align: center;">
+    View All Messages
+  </a>
+</div>
 {% endblock %}

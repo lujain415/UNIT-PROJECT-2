@@ -8,6 +8,9 @@ body {
   max-width: 1000px;
   margin: auto;
   padding: 0 20px;
+}
+
+.container:not(.transparent-box) {
   background-color: #fff;
 }
 
@@ -230,9 +233,9 @@ body {
   padding: 6px 12px;
   border-radius: 5px;
   text-decoration: none;
-  display: inline-block; 
-  width: auto; }
-
+  display: inline-block;
+  width: auto;
+}
 
 .btn-dark-custom:hover {
   background-color: #000000;
@@ -251,8 +254,9 @@ body {
 .link-no-decoration:hover {
   text-decoration: underline;
 }
+
 .no-form-style {
-  all: unset; 
+  all: unset;
   background-color: #000000 !important;
   color: white !important;
   padding: 10px 20px;
@@ -261,6 +265,7 @@ body {
   cursor: pointer;
   display: inline-block;
 }
+
 .card-body {
   display: flex;
   flex-direction: column;
@@ -271,4 +276,156 @@ body {
 .card-body .btn-dark-custom {
   margin-top: auto;
   align-self: center;
+}
+
+.fade-in-title {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  animation: fadeInMove 1.2s ease-out forwards;
+}
+
+@keyframes fadeInMove {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.special-gothic-expanded-one-regular {
+  font-family: "Special Gothic Expanded One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 100px;
+}
+
+.sofadi-one-regular {
+  font-family: "Sofadi One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 23px;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  background-color: #dcffe5;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-custom .nav-link {
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 16px;
+  color: #333;
+  font-size: 20px;
+}
+
+.navbar-custom .nav-link:hover {
+  transform: scale(1.25);
+  color: #198754;
+}
+
+.brand-hover {
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+
+.brand-hover:hover {
+  transform: scale(1.25);
+  color: #198754;
+}
+
+.custom-btn {
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  border-radius: 8px;
+}
+
+.custom-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.custom-btn {
+  background-color: #198754;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-btn:hover {
+  transform: scale(1.10);
+}
+
+.adopt-btn:hover {
+  background-color: #66ff6e;
+}
+
+.edit-btn:hover {
+  background-color: #f0ad4e;
+}
+
+.delete-btn:hover {
+  background-color: #d9534f;
+}
+
+.home-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.container.transparent-box {
+  background-color: rgba(236, 255, 242, 0.443) !important;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.intro-text {
+  font-size: 19px;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #333;
+}
+
+.pets-page-background {
+  background-color: #eeeeee;
+}
+
+.custom-section-title {
+  font-size: 3rem;
+  color: #198754;
+}
+
+.btn-danger.btn-sm:hover {
+  background-color: #b02a37 !important;
+  border-color: #b02a37 !important;
+  color: white !important;
+}
+
+.btn-success.btn-sm:hover {
+  background-color: #146c43 !important;
+  border-color: #146c43 !important;
+  color: white !important;
+}
+
+#bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
 }

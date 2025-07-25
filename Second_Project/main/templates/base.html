@@ -5,35 +5,43 @@
   <meta charset="UTF-8" />
   <title>{% block title %}موقعي{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap" rel="stylesheet">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
 
-  <header class="container py-3 mb-4 border-bottom">
+
+  <header class="container py-3 mb-4 border-bottom transparent-box">
+
     <div class="d-flex flex-wrap justify-content-between align-items-center">
-      <a href="{% url 'main:home' %}" class="fs-4 text-decoration-none">PetCare</a>
+      <a href="{% url 'main:home' %}" class="fs-4 text-decoration-none brand-hover">PetCare</a>
 
-      <nav>
+    <nav class="navbar-custom">
   <ul class="nav">
     <li class="nav-item"><a href="{% url 'main:home' %}" class="nav-link">Home</a></li>
-    <li class="nav-item"><a href="{% url 'main:contact' %}" class="nav-link">Contact Us </a></li>
+    <li class="nav-item"><a href="{% url 'main:contact' %}" class="nav-link">Contact Us</a></li>
     <li class="nav-item"><a href="{% url 'pets:pet_list' %}" class="nav-link">Animals</a></li>
-    <li class="nav-item"><a href="{% url 'pets:adoption_requests_list' %}" class="nav-link">طلبات التبني</a></li>
-    <li class="nav-item"><a href="{% url 'pets:pet_create' %}" class="nav-link">Add Animal </a></li>
+    <li class="nav-item"><a href="{% url 'pets:adoption_requests_list' %}" class="nav-link">Adoption Requests </a></li>
+    <li class="nav-item"><a href="{% url 'pets:pet_create' %}" class="nav-link">Add Animal</a></li>
   </ul>
 </nav>
+
 
     </div>
   </header>
 
-  <main class="container mb-5">
-    {% block content %}{% endblock %}
-  </main>
+<main class="container mb-5 transparent-box">
+  {% block content %}{% endblock %}
+</main>
 
-   <footer class="bg-light py-4 mt-5 border-top">
-  <div class="container d-flex justify-content-between align-items-start flex-wrap">
+
+  <footer class="container py-4 mt-5 border-top transparent-box">
+  <div class="d-flex justify-content-between align-items-start flex-wrap">
     <div class="footer-left">
       <h5>pet</h5>
     </div>

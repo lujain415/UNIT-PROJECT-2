@@ -1,50 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2 class="mb-4">
-  {% if update %}تعديل بيانات الحيوان{% else %}إضافة حيوان جديد للتبني{% endif %}
-</h2>
+<div class="container mt-5">
+  <h2 class="fade-in-title special-gothic-expanded-one-regular text-center mb-4 mt-4 custom-section-title">
+    {% if update %}Edit Pet Information{% else %}Add New Pet for Adoption{% endif %}
+  </h2>
 
-<form method="POST" enctype="multipart/form-data" class="p-4 border rounded bg-light">
-  {% csrf_token %}
-  {{ form.non_field_errors }}
+  <form method="POST" enctype="multipart/form-data" class="p-4 border rounded bg-light shadow-sm mx-auto" style="max-width: 600px;">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
 
-  <div class="mb-3">
-    <label for="id_name" class="form-label">الاسم</label>
-    {{ form.name }}
-  </div>
+    <div class="mb-3">
+      <label for="id_name" class="form-label fw-bold">Name</label>
+      {{ form.name }}
+    </div>
 
-  <div class="mb-3">
-    <label for="id_age" class="form-label">العمر</label>
-    {{ form.age }}
-  </div>
+    <div class="mb-3">
+      <label for="id_age" class="form-label fw-bold">Age</label>
+      {{ form.age }}
+    </div>
 
-  <div class="mb-3">
-    <label for="id_breed" class="form-label">السلالة</label>
-    {{ form.breed }}
-  </div>
+    <div class="mb-3">
+      <label for="id_breed" class="form-label fw-bold">Breed</label>
+      {{ form.breed }}
+    </div>
 
-  <div class="mb-3">
-    <label for="id_category" class="form-label">الفئة</label>
-    {{ form.category }}
-  </div>
+    <div class="mb-3">
+      <label for="id_category" class="form-label fw-bold">Category</label>
+      {{ form.category }}
+    </div>
 
-  <div class="mb-3">
-    <label for="id_description" class="form-label">الوصف</label>
-    {{ form.description }}
-  </div>
+    <div class="mb-3">
+      <label for="id_description" class="form-label fw-bold">Description</label>
+      {{ form.description }}
+    </div>
 
-  <div class="mb-3">
-    <label for="id_image" class="form-label">الصورة</label>
-    {{ form.image }}
-  </div>
+    <div class="mb-3">
+      <label for="id_image" class="form-label fw-bold">Image</label>
+      {{ form.image }}
+    </div>
 
-  <div class="form-check mb-3">
-    {{ form.available }} <label for="id_available" class="form-check-label">متاح للتبني؟</label>
-  </div>
+    <div class="form-check mb-3">
+      {{ form.available }} <label for="id_available" class="form-check-label fw-bold">Available for Adoption?</label>
+    </div>
 
-  <button type="submit" class="btn btn-dark-custom">
-    {% if update %}تحديث{% else %}إضافة{% endif %}
-  </button>
-</form>
+    <button type="submit" class="btn btn-dark-custom w-100">
+      {% if update %}Update{% else %}Add{% endif %}
+    </button>
+  </form>
+</div>
 {% endblock %}

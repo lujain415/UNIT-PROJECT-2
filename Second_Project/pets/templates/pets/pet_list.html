@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block body_class %}pets-page-background{% endblock %}
 
 {% block content %}
-<h2>Available Pets for Adoption</h2>
+
+<h2 class="fade-in-title special-gothic-expanded-one-regular text-center mb-4 mt-4 custom-section-title">
+  Available Pets for Adoption
+</h2>
 
 <form method="get" class="filter-form mb-4">
   <label for="category">Category:</label>

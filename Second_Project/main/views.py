@@ -4,9 +4,8 @@ from .forms import ContactForm
 from .models import Contact
 
 def home(request):
-    
-    featured_pets = Pet.objects.filter(available=True).order_by('-created_at')[:6]
-    return render(request, 'main/home.html', {'pets': featured_pets})
+    return render(request, 'main/home.html')
+
 
 def contact_view(request):
     if request.method == 'POST':

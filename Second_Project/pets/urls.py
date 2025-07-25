@@ -13,6 +13,8 @@ urlpatterns = [
     path('adoption-requests/', views.adoption_requests_list, name='adoption_requests_list'),
      path('thank-you/', views.thank_you_view, name='thank_you'),
      path('requests/<int:request_id>/delete/', views.delete_adoption_request, name='delete_adoption_request'),
+     path('adoption/<int:request_id>/accept/', views.accept_adoption_request, name='accept_request'),
+
 
 
     

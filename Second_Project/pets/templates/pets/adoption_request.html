@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}طلب تبني {{ pet.name }}{% endblock %}
+{% block title %}Adoption Request{{ pet.name }}{% endblock %}
 
 {% block content %}
-  <h2>طلب تبني: {{ pet.name }}</h2>
+  <h2>Adoption Request : {{ pet.name }}</h2>
   <form method="post" class="d-flex flex-column gap-3" style="max-width: 500px;">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-success">إرسال الطلب</button>
+    <button type="submit" class="btn btn-success"> Submit Request</button>
   </form>
 {% endblock %}
