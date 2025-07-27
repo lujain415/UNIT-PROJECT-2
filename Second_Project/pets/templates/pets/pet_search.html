@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
-
+{% block body_class %}contact-page-background{% endblock %}
+{% block main_class %}no-bg-container{% endblock %}
 {% block content %}
-<h2>Search Results for "{{ request.GET.search }}"</h2>
 
+<h2 class="fade-in-title special-gothic-expanded-one-regular text-center mb-4 mt-4 custom-section-title">
+  Search Results for "{{ request.GET.search }}"
+</h2>
 <form method="get" action="{% url 'pets:pet_search' %}" class="d-flex mb-4" role="search">
   <input
     class="form-control me-2"
@@ -25,14 +28,14 @@
           <div class="card-body">
             <h5 class="card-title">{{ pet.name }}</h5>
             <p class="card-text">{{ pet.description|truncatewords:15 }}</p>
-            <a href="{% url 'pets:pet_detail' pet.id %}" class="btn btn-outline-primary">عرض التفاصيل</a>
+            <a href="{% url 'pets:pet_detail' pet.id %}"  class="btn custom-btn delete-btn">عرض التفاصيل</a>
           </div>
         </div>
       </div>
     {% endfor %}
   </div>
 {% else %}
-  <p>لم يتم العثور على نتائج.</p>
+  <p class="card-text fs-5">No results found</p>
 {% endif %}
 
 {% endblock %}

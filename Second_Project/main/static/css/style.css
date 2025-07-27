@@ -400,12 +400,18 @@ body {
 }
 
 .pets-page-background {
-  background-color: #eeeeee;
+ /*background-image: url('/static/images/pexels-steve-29506613.jpg');*/ 
+ background-color: #ffffff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
 }
+
 
 .custom-section-title {
   font-size: 3rem;
-  color: #198754;
+  color: #000000;
 }
 
 .btn-danger.btn-sm:hover {
@@ -436,3 +442,50 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
 }
+.no-bg-container {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border: none !important;
+}
+.pets-form-background {
+  background-image: url('/static/images/pexels-steve-29506613.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container.transparent-box {
+  background-color: rgba(236, 255, 242, 0.443) !important;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.thank-you-background {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main.container {
+  flex-grow: 1;
+}
+
+
+

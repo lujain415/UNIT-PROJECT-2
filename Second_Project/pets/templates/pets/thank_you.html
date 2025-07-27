@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}thank-you-background{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-  <div class="card text-center shadow p-4">
-    <div class="card-body">
-      <h2 class="card-title mb-4"> شكراً لطلب التبني!</h2>
-      <p class="card-text fs-5">تم استلام طلبك بنجاح، وسنتواصل معك قريباً إذا تم قبول الطلب.</p>
-      <a href="{% url 'pets:pet_list' %}" class="btn btn-dark-custom mt-4">العودة إلى قائمة الحيوانات</a>
+  <video autoplay muted loop id="bg-video">
+    <source src="{% static 'images/189813-887078786_small.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  
+    <div class="card text-center shadow p-4" style="background-color: transparent !important; box-shadow: none !important;">
+      <div class="card-body">
+        
+        <h1 class="fade-in-title special-gothic-expanded-one-regular">Thank you</h1>
+        <p class="card-text fs-5">Your request has been received successfully, and we will contact you soon if the request is approved</p>
+        <a href="{% url 'pets:pet_list' %}" class="btn btn-dark-custom mt-4">Back to the list of pets</a>
+      </div>
     </div>
-  </div>
-</div>
 {% endblock %}
+

@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}رسائل التواصل{% endblock %}
-
+{% block title %}Contact Messages {% endblock %}
+{% block body_class %}contact-page-background{% endblock %}
+{% block main_class %}no-bg-container{% endblock %}
 {% block content %}
-  <h2>رسائل التواصل</h2>
+  <h2 class="fade-in-title special-gothic-expanded-one-regular text-center mb-4 mt-4 custom-section-title">
+  Contact Messages
+</h2>
 
   {% if messages %}
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -16,13 +19,13 @@
               <p class="card-text">{{ msg.message|linebreaksbr }}</p>
             </div>
             <div class="card-footer text-muted">
-              أرسلت في: {{ msg.created_at|date:"Y-m-d H:i" }}
+              Sent at: {{ msg.created_at|date:"Y-m-d H:i" }}
             </div>
           </div>
         </div>
       {% endfor %}
     </div>
   {% else %}
-    <p class="text-center">لا توجد رسائل حالياً.</p>
+    <p class="text-center">There are no messages at the moment</p>
   {% endif %}
 {% endblock %}

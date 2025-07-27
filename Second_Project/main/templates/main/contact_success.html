@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}شكراً لك{% endblock %}
+{% block title %}Thank You{% endblock %}
+
+{% block body_class %}thank-you-background{% endblock %}
 
 {% block content %}
-  <h2>شكراً لتواصلك معنا!</h2>
-  <p>لقد استلمنا رسالتك وسنعود إليك قريبًا.</p>
-  <a href="{% url 'main:home' %}" class="btn btn-dark">العودة للرئيسية</a>
+  <video autoplay muted loop id="bg-video">
+    <source src="{% static 'images/189813-887078786_small.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="card text-center shadow p-4" style="background-color: transparent !important; box-shadow: none !important;">
+    <div class="card-body">
+      <h1 class="fade-in-title special-gothic-expanded-one-regular">Thank you </h1>
+      <p class="card-text fs-5">We have received your message and will get back to you soon</p>
+      <a href="{% url 'main:home' %}" class="btn btn-dark-custom mt-4">Back to Home </a>
+    </div>
+  </div>
 {% endblock %}

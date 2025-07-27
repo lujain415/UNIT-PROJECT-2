@@ -1,13 +1,42 @@
 {% extends 'base.html' %}
 
-{% block title %}Adoption Request{{ pet.name }}{% endblock %}
-{% block main_class %}{% endblock %}
+{% block title %}Adoption Request: {{ pet.name }}{% endblock %}
+
+{% block body_class %}pets-form-background{% endblock %}
+{% block main_class %}no-bg-container{% endblock %}
 
 {% block content %}
-  <h2>Adoption Request : {{ pet.name }}</h2>
-  <form method="post" class="d-flex flex-column gap-3" style="max-width: 500px;">
+<div class="container transparent-box mt-5">
+
+  <h2 class="fade-in-title special-gothic-expanded-one-regular text-center mb-4 mt-4 custom-section-title">
+    Adoption Request: {{ pet.name }}
+  </h2>
+
+  <form method="post" class="p-4 border rounded shadow-sm mx-auto" style="background-color: transparent !important;">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success"> Submit Request</button>
+    {{ form.non_field_errors }}
+
+    <div class="mb-3">
+      <label for="{{ form.name.id_for_label }}" class="form-label fw-bold">Name</label>
+      {{ form.name }}
+    </div>
+<div class="mb-3">
+  <label for="{{ form.phone.id_for_label }}" class="form-label fw-bold">Phone</label>
+  {{ form.phone }}
+</div>
+
+    <div class="mb-3">
+      <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">Email</label>
+      {{ form.email }}
+    </div>
+
+    <div class="mb-3">
+      <label for="{{ form.message.id_for_label }}" class="form-label fw-bold">Message</label>
+      {{ form.message }}
+    </div>
+
+    <button type="submit" class="btn btn-dark-custom w-100">Submit Request</button>
   </form>
+
+</div>
 {% endblock %}

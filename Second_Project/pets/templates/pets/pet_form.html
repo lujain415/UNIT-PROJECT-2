@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
-{% block main_class %}{% endblock %}
+
+{% block title %}Add New Pet for Adoption{% endblock %}
+
+{% block body_class %}pets-form-background{% endblock %} 
+
+{% block main_class %}no-bg-container{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container transparent-box mt-5">
   <h2 class="fade-in-title special-gothic-expanded-one-regular text-center mb-4 mt-4 custom-section-title">
     {% if update %}Edit Pet Information{% else %}Add New Pet for Adoption{% endif %}
   </h2>
 
-  <form method="POST" enctype="multipart/form-data" class="p-4 border rounded bg-light shadow-sm mx-auto" style="max-width: 600px;">
+  <form method="POST" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
     {{ form.non_field_errors }}
 
@@ -39,6 +44,23 @@
     <div class="mb-3">
       <label for="id_image" class="form-label fw-bold">Image</label>
       {{ form.image }}
+       <img id="preview" alt="New Image Preview" style="width: 30%; height: 30%; object-fit: cover; border-radius: 10px; display:none;" />
+</div>
+
+<script>
+  const input = document.getElementById('id_image');
+  const preview = document.getElementById('preview');
+
+  input.onchange = e => {
+    if(e.target.files && e.target.files[0]) {
+      preview.src = URL.createObjectURL(e.target.files[0]);
+      preview.style.display = 'block';
+      
+      const currentPreview = document.getElementById('current-preview');
+      if(currentPreview) currentPreview.style.display = 'none';
+    }
+  }
+</script>
     </div>
 
     <div class="form-check mb-3">
