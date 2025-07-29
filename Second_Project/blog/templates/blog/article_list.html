@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog{% endblock %}
+{% block main_class %}no-bg-container{% endblock %}  
+{% block body_class %}contact-page-background{% endblock %}
+{% block content %}
+  
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      
+      <h2 class="fade-in-title special-gothic-expanded-one-regular text-center mb-4 mt-4 custom-section-title">
+  Our Blog
+</h2>
+      <a href="{% url 'blog:article_create' %}" class="btn btn-dark-custom">+ Add Article</a>
+    </div>
+{% for article in articles %}
+  <div class="card mb-4 shadow-sm">
+    {% if article.video %}
+      <video controls width="100%" style="max-height: 200px; object-fit: cover;">
+        <source src="{{ article.video.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    {% elif article.image %}
+      <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}" style="max-height: 200px; object-fit: cover;">
+    {% endif %}
+    
+    <div class="card-body">
+      <h5 class="card-title">{{ article.title }}</h5>
+      <p class="card-text">{{ article.content|truncatewords:20 }}</p>
+      <a href="{% url 'blog:article_detail' article.id %}" class="btn btn-outline-dark btn-sm">Read More</a>
+    </div>
+  </div>
+{% empty %}
+  <p>No articles yet.</p>
+{% endfor %}
+
+  </div>
+{% endblock %}

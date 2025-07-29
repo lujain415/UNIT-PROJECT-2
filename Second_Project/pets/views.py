@@ -1,15 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import AdoptionRequestForm
-from .models import AdoptionRequest
 
-from .forms import PetForm, CommentForm
-from .models import Pet, Comment
+from .models import Pet, Comment, AdoptionRequest
+from .forms import PetForm, CommentForm, AdoptionRequestForm
 
 
 def pet_list(request):
     pets = Pet.objects.all()
 
-    
     category = request.GET.get('category')
     available = request.GET.get('available')
 
@@ -44,11 +41,13 @@ def pet_detail(request, pet_id):
     else:
         form = CommentForm()
 
-    return render(request, 'pets/pet_detail.html', {
+    context = {
         'pet': pet,
         'comments': comments,
         'form': form,
-    })
+    }
+    return render(request, 'pets/pet_detail.html', context)
+
 
 def pet_create(request):
     if request.method == 'POST':
@@ -58,7 +57,9 @@ def pet_create(request):
             return redirect('pets:pet_list')
     else:
         form = PetForm()
+
     return render(request, 'pets/pet_form.html', {'form': form})
+
 
 def pet_update(request, pet_id):
     pet = get_object_or_404(Pet, id=pet_id)
@@ -69,23 +70,31 @@ def pet_update(request, pet_id):
             return redirect('pets:pet_detail', pet_id=pet.id)
     else:
         form = PetForm(instance=pet)
+
     return render(request, 'pets/pet_form.html', {'form': form, 'update': True})
+
 
 def pet_delete(request, pet_id):
     pet = get_object_or_404(Pet, id=pet_id)
     if request.method == 'POST':
         pet.delete()
         return redirect('pets:pet_list')
+
     return render(request, 'pets/pet_confirm_delete.html', {'pet': pet})
+
 
 def pet_search(request):
     query = request.GET.get('search', '')
     pets = Pet.objects.filter(name__icontains=query) if query else Pet.objects.none()
-    return render(request, 'pets/pet_search.html', {'results': pets, 'query': query})
-
+    context = {
+        'results': pets,
+        'query': query,
+    }
+    return render(request, 'pets/pet_search.html', context)
 
 def adoption_request_view(request, pet_id):
     pet = get_object_or_404(Pet, id=pet_id)
+
     if request.method == 'POST':
         form = AdoptionRequestForm(request.POST)
         if form.is_valid():
@@ -95,20 +104,28 @@ def adoption_request_view(request, pet_id):
             return redirect('pets:thank_you')
     else:
         form = AdoptionRequestForm()
-    return render(request, 'pets/adoption_request.html', {'form': form, 'pet': pet})
+
+    context = {
+        'form': form,
+        'pet': pet,
+    }
+    return render(request, 'pets/adoption_request.html', context)
 
 
 def thank_you_view(request):
     return render(request, 'pets/thank_you.html')
 
+
 def adoption_requests_list(request):
-    requests = AdoptionRequest.objects.select_related('pet').all()  
+    requests = AdoptionRequest.objects.select_related('pet').all()
     return render(request, 'pets/adoption_requests_list.html', {'requests': requests})
+
 
 def delete_adoption_request(request, request_id):
     adoption_request = get_object_or_404(AdoptionRequest, id=request_id)
     adoption_request.delete()
     return redirect('pets:adoption_requests_list')
+
 
 def accept_adoption_request(request, request_id):
     adoption_request = get_object_or_404(AdoptionRequest, id=request_id)

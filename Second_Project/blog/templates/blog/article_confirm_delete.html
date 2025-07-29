@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Article{% endblock %}
+{% block body_class %}contact-page-background{% endblock %}
+
+{% block content %}
+<h2 class="fade-in-title special-gothic-expanded-one-regular text-center mb-4 mt-4 custom-section-title">
+  Delete Article
+</h2>
+
+<p class="text-center fs-5">
+  Are you sure you want to delete the article: <strong>"{{ article.title }}"</strong>?
+</p>
+
+<form method="post" class="text-center mt-3">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger me-2">Yes, Delete</button>
+  <a href="{% url 'blog:article_detail' article.id %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

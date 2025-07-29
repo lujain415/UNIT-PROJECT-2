@@ -22,12 +22,10 @@
   </div>
 </div>
 <div class="mt-4 d-flex gap-2">
-  <a href="{% url 'pets:adoption_request' pet.id %}" class="btn custom-btn adopt-btn">تبني هذا الحيوان</a>
-  <a href="{% url 'pets:pet_update' pet.id %}" class="btn custom-btn edit-btn">تعديل</a>
-  <a href="{% url 'pets:pet_delete' pet.id %}" class="btn custom-btn delete-btn">حذف</a>
+  <a href="{% url 'pets:adoption_request' pet.id %}" class="btn custom-btn adopt-btn"> Adopt this pet </a>
+  <a href="{% url 'pets:pet_update' pet.id %}" class="btn custom-btn edit-btn">Update</a>
+  <a href="{% url 'pets:pet_delete' pet.id %}" class="btn custom-btn delete-btn">Delete</a>
 </div>
-
-
 
 <hr>
 
