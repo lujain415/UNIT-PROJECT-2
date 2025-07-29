@@ -24,16 +24,17 @@ Build a web platform where users can explore educational content, browse and add
 
 • User Stories:
 
-(docs/User_stories.pdf)
+
+[User Stories](docs/User_stories.pdf)
 
 ⸻
 
 • UML Diagram:
 
-(docs/UML.pdf)
 
+[UML Diagram](docs/UML.pdf)
 ⸻
 
 • Wireframe:
 
-(docs/Wireframe.pdf)
+[Wireframe](docs/Wireframe.pdf)
