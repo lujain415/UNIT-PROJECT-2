@@ -16,6 +16,7 @@
     <p class="sofadi-one-regular">Help a animal find a warm home</p>
   </div>
   <form method="get" action="{% url 'pets:pet_search' %}" class="mb-4 d-flex justify-content-center align-items-center gap-2">
+    {% csrf_token %}
   <input type="text" name="search" placeholder="Search.." class="form-control" style="max-width:400px;">
   <button type="submit" class="btn btn-dark-custom">Search</button>
 </form>
